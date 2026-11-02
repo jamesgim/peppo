@@ -27,3 +27,18 @@
 
 원본 Release ZIP은 고정본입니다. 저장소의 이미지 교체가 기존 Release 첨부 ZIP을
 자동 변경하지는 않습니다. 최신본은 Code → Download ZIP으로 받으세요.
+
+## 이미지 세트 원복
+
+현재 `peppo_camp_deck/images/`는 새 배경 이미지, `peppo_camp_deck/image2/`는
+교체 전 원본입니다. `REF-01.png`는 실제 사례 자료이므로 양쪽에서 동일합니다.
+덱 HTML과 텍스트는 변경하지 않았습니다.
+
+다운로드한 폴더에서 다음처럼 이름을 바꾸면 즉시 원복됩니다.
+
+1. `images` → `images_temp`
+2. `image2` → `images`
+3. `images_temp` → `image2`
+
+다시 같은 순서를 실행하면 새 이미지로 돌아옵니다. 브라우저를 새로고침하세요.
+각 폴더의 `SET.txt`로 원본/신규 세트를 확인할 수 있습니다.
