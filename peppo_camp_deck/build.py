@@ -297,6 +297,19 @@ slides.insert(_personal_index, dict(kind="personal", eyebrow="5막 · 개인 인
 SCRIPTS = {(k + 1 if k > _personal_index else k): v for k, v in SCRIPTS.items()}
 SCRIPTS[_personal_index + 1] = ("공간 행동 → 개인 의식", "이 버튼들은 귀여운 동작보다 마음을 다루는 짧은 의식입니다. 열기를 내쉬며 진정하고, 오늘을 뿌시며 해소하고, 마음을 접어 불에 놓고, 남은 온기를 옆 사람에게 건넵니다. 대표 행위는 마음 접어 태우기입니다. 열기 내쉬기는 ㅡㅡ 눈과 붉은 꼬불이로 표현하고 주황색으로 돌아옵니다. 연타 보상 대신 누르고 머물고 놓는 호흡을 둡니다. PEPPO도 옆에서 같은 속도로 함께합니다.")
 
+
+# v2: 39 → 30 slides. Re-map scripts with retained narrative units.
+_drop = {2, 4, 5, 8, 9, 13, 15, 30, 36}
+_oldslides, _oldscripts = slides[:], SCRIPTS.copy()
+slides = [v for j,v in enumerate(_oldslides,1) if j not in _drop]
+SCRIPTS = {i+1:_oldscripts[j] for i,j in enumerate(j for j in range(1,len(_oldslides)+1) if j not in _drop)}
+for _s in slides:
+    if _s.get('img') == 'IMG-08': _s['kind'] = 'realitypair'
+    if _s.get('img') == 'IMG-17': _s['kind'] = 'timecards'
+    if _s.get('img') == 'IMG-20': _s['kind'] = 'journeycards'
+    if _s.get('img') == 'IMG-23' and _s['kind'] == 'wide': _s['kind'] = 'roadcards'
+    if _s.get('img') == 'IMG-14': _s['kind'] = 'actioncards'
+
 # =========================== RENDER ===========================
 def footer(n): return f'<p class="foot">PEPPO WORLD / RENEWAL PROPOSAL · {n:02d}</p>'
 def storybar(act):
@@ -328,6 +341,14 @@ def wheel_svg(s):
     out.append(f'<circle cx="{cx}" cy="{cy}" r="150" fill="none" stroke="#FFB020" stroke-opacity=".5" stroke-width="2"/>')
     return f'<svg class="wsvg" width="1180" height="860" viewBox="0 0 1180 860">{"".join(out)}</svg>', cx, cy, r
 
+
+def panel(asset, index, cols=2, rows=2):
+    x,y=index%cols,index//cols
+    return f'<div class="artpanel"><img src="images/{asset}.png" style="width:{cols*100}%;height:{rows*100}%;left:-{x*100}%;top:-{y*100}%" alt="분할 원본의 전체 장면"></div>'
+
+def fullart(asset):
+    return f'<div class="fullart"><img src="images/{asset}.png" alt="{asset}"></div>'
+
 def render(s, n):
     k = s["kind"]
     if k == "cover":
@@ -343,6 +364,24 @@ def render(s, n):
         return f"""<section class="slide statement">{img(s['img'],'bg')}<div class="scrim2"></div>
 <p class="eyebrow abs">{s['eyebrow']}</p><div class="sttxt"><h1>{s['title']}</h1><p class="sub">{s['sub']}</p><div class="tags">{tags}</div></div>{footer(n)}</section>"""
     head = f"<header><p class='eyebrow'>{s['eyebrow']}</p><h2>{s['title']}</h2></header>"
+    if k in ('timecards','journeycards','actioncards'):
+        if k == 'timecards':
+            asset='IMG-17'
+            data=[('18:00 · 입장','작은 불에 첫 사람이 모인다.','먼저 온 사람이 종이 장작을 보태며 밤을 연다.'),('22:00 · 함께 태우기','사람이 모이면 불과 관계가 커진다.','10명 이상 불멍 시 PEPPO가 장작을 더한다(가안).'),('00:00 · 오늘의 흔적','태운 불씨가 별자리로 남는다.','공동의 하늘과 내 기록을 확인하고 공유한다.'),('05:00 · 새벽 리셋','불은 쉬고, 내 별자리는 남는다.','공간은 다음 밤을 준비하고 저장한 기록은 이어진다.')]
+        elif k == 'journeycards':
+            asset='IMG-20'
+            data=[('00:00 · 바로 입장','설치·로그인 없이 링크로 들어온다.','꼬불 불씨 플레이어와 캠프 네임이 생긴다.'),('00:10 · PEPPO와 만남','등불을 받고 빈 자리를 찾는다.','내 눈높이로 동네를 걷고 불 앞에 앉는다.'),('00:30 · 첫 해소','마음을 접어 불에 놓는다.','불멍·바람·야식과 개인 의식으로 함께 머문다.'),('05:00 · 기록과 공유','내가 태운 별을 한 장에 담는다.','카드를 공유하고, 내 별자리 저장 시 로그인한다.')]
+        else:
+            asset='IMG-14'
+            data=[('장작 넣기','마음을 접어 불에 놓기','개인의 해소가 별자리의 흔적으로 남는다.'),('바람 보내기','함께 불을 키우는 응원','내 부채질이 옆 사람의 불에도 힘을 보탠다.'),('불 돋우기','불을 돌보는 짧은 손길','부지깽이에 불꽃과 소리가 반응한다.'),('라면 끓이기','함께 먹으며 머무는 시간','보글보글 소리와 젓는 모션으로 브랜드를 체험한다.')]
+        cards=''.join(f'<article class="sceneunit">{panel(asset,i)}<div><p class="k">{a}</p><h3>{b}</h3><p>{c}</p></div></article>' for i,(a,b,c) in enumerate(data))
+        return f'<section class="slide scenecards">{head}<div class="scenegrid">{cards}</div>{footer(n)}</section>'
+    if k == 'realitypair':
+        return f'<section class="slide realitypair">{head}<div class="realitygrid"><article>{panel("IMG-08",0,2,1)}<div><p class="k">REAL WORLD</p><h3>마음에 쌓인 하루</h3><p>꺼낸다 → 접는다. 익숙한 손동작에서 시작한다.</p></div></article><article>{panel("IMG-08",1,2,1)}<div><p class="k">PEPPO FILTER → WORLD</p><h3>함께 태우고, 별로 남긴다</h3><p>품는다 → 놓는다. 혼자 견딘 마음이 함께한 흔적이 된다.</p></div></article></div>{footer(n)}</section>'
+    if k == 'roadcards':
+        data=[('IMG-07','MVP · 6–8주','불 하나로 경험 검증','공동의 불·기본 행동·개인 의식·PEPPO 동행·공유 카드','판단: 동시접속 · 체류 · 공유 발생'),('IMG-12','PHASE 2','야식과 기록으로 재방문','라면 공동 테이블·호숫가·My Camp·개인 별자리 저장','판단: D7 · 로그인 전환'),('IMG-09','PHASE 3','동네에서 현실로 확장','숲길 탐색·시즌 장작·별 마일스톤·실물 보상·글로벌','판단: 브랜드 연상 · 보상 교환')]
+        cards=''.join(f'<article>{fullart(im)}<div><p class="k">{a}</p><h3>{b}</h3><p>{c}</p><p class="decision">{d}</p></div></article>' for im,a,b,c,d in data)
+        return f'<section class="slide roadcards">{head}<div class="roadgrid">{cards}</div>{footer(n)}</section>'
     if k == "personal":
         return f"""<section class="slide personal">{head}<div style="display:flex;gap:36px;align-items:center;flex:1;min-height:0">
 <div style="width:1010px;flex-shrink:0">{img('MOTION-01','',570)}<p class="note">기본 플레이는 1인칭 / 전신 이미지는 타인에게 보이는 동작 설명 / 대표 행위: 마음 접어 태우기</p></div>
@@ -413,15 +452,14 @@ def render(s, n):
         fig = img(s['img']) if not s.get("cap") else f'<div class="figwrap">{img(s["img"])}<p class="figcap">{s["cap"]}</p></div>'
         return f"""<section class="slide split{rev}">{head}<div class="row">{fig}<div class="txt">{s['body']}</div></div>{footer(n)}</section>"""
     if k == "sharecard":
-        return f"""<section class="slide sharecard">{head}
-{img('SHARE-01','wideimg',480)}
-<div class="shareflow"><span>① 내 캐릭터·별자리 카드 생성</span><span>② 이미지 저장 / 기기 공유</span><span>③ SNS에 카드 + 입장 링크</span><span>④ 친구가 링크로 입장</span></div>
-<div class="cards2">
-{blk('왜 공유하는가','내 캐릭터 + 오늘의 흔적 + 함께한 숫자. 개인 기록을 한 장에 담는다. 9:16·1:1 두 형식 제공. 수치와 카드는 예시이며 공유 의향은 MVP에서 확인한다.')}
-{blk('무엇을 측정하는가','카드 생성·공유 버튼 사용·입장 링크 경유 방문을 연결한다. 이미지 저장과 실제 게시를 구분하며, 출처 코드는 개인정보 없이 유입만 집계한다.',True)}
-</div>{footer(n)}</section>"""
+        return f"""<section class="slide sharecard">{head}<div class="shareeditorial">
+<article class="actualshare"><p class="k">PEPPO WORLD · 내 밤의 기록</p>{fullart('IMG-24')}<h3>오늘, 함께 태웠어요</h3><p>4단계 밤바람 · 별자리 27개</p><div class="sharestat"><span>장작 <b>27</b></span><span>불멍 <b>18분</b></span><span>함께 <b>12명</b></span></div><p class="sharelink">peppoworld.com · 입장 코드 NB-4K2</p><small>수치·코드는 시안 예시</small></article>
+<div class="shareexplain">{fullart('SHARE-01')}<div class="sharesteps"><span>카드 생성</span><b>→</b><span>저장·기기 공유</span><b>→</b><span>SNS + 입장 링크</span><b>→</b><span>친구 방문</span></div><div class="cards2">
+{blk('공유의 이유','내 캐릭터·오늘의 별·함께한 기록을 한 장으로. 9:16·1:1 형식으로 제공하며, 공유 의향은 MVP에서 검증한다.')}
+{blk('효과의 확인','카드 생성·공유 버튼 사용·링크 경유 방문을 구분한다. 저장을 실제 게시로 간주하지 않고 다음 방문까지 연결해 본다.',True)}
+</div></div></div>{footer(n)}</section>"""
     if k == "wide":
-        return f"""<section class="slide wide">{head}{img(s['img'],'wideimg',s.get('imgh'))}<div class="txt grow">{s['body']}</div>{footer(n)}</section>"""
+        return f"""<section class="slide wide">{head}{img(s['img'],'wideimg naturalart',s.get('imgh'))}<div class="txt grow">{s['body']}</div>{footer(n)}</section>"""
     return f"""<section class="slide text">{head}<div class="txt grow">{s['body']}</div>{footer(n)}</section>"""
 
 CSS = f"""
@@ -553,6 +591,56 @@ body.sc #script{{display:block}} .sch{{display:flex;gap:16px;align-items:baselin
 .wstage{{zoom:.8}}
 .wrow{{min-height:0;max-height:720px}}
 .wside .note{{font-size:18px}}
+
+.artpanel{{position:relative;overflow:hidden;aspect-ratio:16/9;background:#171B2C}}
+.artpanel img{{position:absolute;max-width:none;object-fit:fill}}
+.fullart{{aspect-ratio:16/9;overflow:hidden;border-radius:14px}}
+.fullart img{{width:100%;height:100%;object-fit:cover;display:block}}
+.scenegrid{{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1;min-height:0}}
+.sceneunit{{display:grid;grid-template-columns:60% 40%;border:1px solid #2A2F45;border-radius:18px;overflow:hidden;background:{CARD};align-items:center}}
+.sceneunit>div:last-child{{padding:22px}}
+.sceneunit .k{{font-size:19px;color:{AMBER};margin-bottom:10px}}
+.sceneunit h3{{font-size:28px;margin-bottom:12px}}
+.sceneunit p{{font-size:21px;line-height:1.4}}
+.sceneunit .artpanel{{width:100%}}
+.realitygrid{{display:grid;grid-template-columns:1fr 1fr;gap:30px;flex:1;min-height:0}}
+.realitygrid article{{display:grid;grid-template-columns:55% 45%;align-items:center;background:{CARD};border:1px solid #2A2F45;border-radius:18px;overflow:hidden}}
+.realitygrid .artpanel{{aspect-ratio:8/9;width:100%}}
+.realitygrid article>div:last-child{{padding:28px}}
+.realitygrid h3{{font-size:34px;margin:16px 0}}
+.realitygrid p{{font-size:23px}}
+.roadgrid{{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;flex:1}}
+.roadgrid article{{border-radius:18px;background:{CARD};overflow:hidden;border:1px solid #2A2F45;display:flex;flex-direction:column}}
+.roadgrid article>div:last-child{{padding:28px;display:flex;flex-direction:column;gap:20px;flex:1}}
+.roadgrid .fullart{{border-radius:0;flex-shrink:0}}
+.roadgrid h3{{font-size:34px}}
+.roadgrid p{{font-size:24px}}
+.decision{{color:{AMBER};margin-top:auto;font-weight:700}}
+.shareeditorial{{display:grid;grid-template-columns:440px 1fr;gap:36px;flex:1;min-height:0}}
+.actualshare{{padding:24px;border:1px solid #5C667A;border-radius:22px;background:linear-gradient(#151D35,#292033);display:flex;flex-direction:column;gap:18px}}
+.actualshare .k{{font-size:18px;color:{LIME}}}
+.actualshare .fullart{{flex:1;min-height:200px;aspect-ratio:auto}}
+.actualshare h3{{font-size:34px}}
+.actualshare p{{font-size:21px}}
+.actualshare small{{font-size:16px;color:{MUTE}}}
+.sharestat{{display:flex;justify-content:space-between;font-size:20px}}
+.sharestat b{{color:{AMBER}}}
+.sharelink{{font-size:17px!important}}
+.shareexplain{{display:flex;flex-direction:column;gap:24px;min-width:0}}
+.shareexplain>.fullart{{width:100%;aspect-ratio:16/9;flex-shrink:0}}
+.sharesteps{{display:flex;justify-content:space-between;font-size:20px;color:{AMBER}}}
+.shareexplain .cards2 p{{font-size:21px}}
+figure.naturalart{{width:auto!important;align-self:center;aspect-ratio:16/9;max-width:100%;border:0;background:transparent}}
+.shareeditorial{{grid-template-columns:520px 1fr}}
+.shareexplain{{gap:16px}}
+.shareexplain .cards2 .blk{{padding:14px 18px}}
+.shareexplain .cards2 p{{font-size:19px;line-height:1.35}}
+.actualshare{{gap:14px}}
+.shareeditorial{{height:710px;max-height:710px;flex:none}}
+.shareexplain>.fullart{{height:490px;aspect-ratio:auto;background:transparent}}
+.shareexplain>.fullart img{{object-fit:contain}}
+.actualshare .fullart{{max-height:350px}}
+.actualshare{{gap:12px}}
 @media print{{
  @page{{size:A4 landscape;margin:0}}
  html,body{{height:auto!important;overflow:visible!important;background:{NAVY}}}
