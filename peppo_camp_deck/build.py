@@ -6,12 +6,13 @@ from scripts import SCRIPTS
 NAVY, PAPER, FIRE, AMBER, LIME, MUTE, CARD = "#0E1220", "#F3EFE6", "#FF6A2A", "#FFB020", "#D6FF3B", "#9A9AA8", "#171B2C"
 
 IMG_DESC = {
+ "MOTION-01":"개인 버튼 인터랙션 4종 — 불닭 뿌시기 · 매운 숨 · 스트레스 꼬깃 · 충전 댄스",
  "IMG-01":"표지 — 밤의 캠프, 불 앞의 월드","IMG-02":"세 개의 불","IMG-03":"유리창 너머의 캐릭터",
  "IMG-04":"수백 개의 작은 가상 휴식 공간","IMG-05":"다섯 가지 이유 — 오브제 5종","IMG-06":"(미사용)",
- "IMG-07":"큰 불 앞 실루엣","IMG-08":"Real World → PEPPO Filter → PEPPO World","IMG-09":"캠프사이트 등각 지도",
- "IMG-10":"메인 캠프파이어 — 통나무 자리 100석","IMG-11":"호숫가 자리 — 같은 색 랜턴","IMG-12":"야식 자리 — 불 위의 라면 코펠 (재생성 필요)",
- "IMG-13":"숲길 탐색 노드 — 이스터에그","IMG-14":"네 가지 손동작 4분할 (4번째 패널 재생성 필요)","IMG-15":"태운 것은 별이 된다",
- "IMG-16":"불멍 모드 1인칭","IMG-17":"하루의 네 장면","IMG-18":"불 지킴이의 빈 자리","IMG-19":"캠퍼 라인업 6종",
+ "IMG-07":"큰 불 앞 실루엣","IMG-08":"Real World → PEPPO Filter → PEPPO World","IMG-09":"플레이어 눈높이에서 보는 동네 동선",
+ "IMG-10":"메인 캠프파이어 — 통나무 자리 100석","IMG-11":"호숫가 자리 — 같은 색 랜턴","IMG-12":"야식 자리 — 불 위의 라면 코펠",
+ "IMG-13":"숲길 탐색 노드 — 이스터에그","IMG-14":"네 가지 손동작 4분할","IMG-15":"태운 것은 별이 된다",
+ "IMG-16":"불멍 모드 1인칭","IMG-17":"하루의 네 장면","IMG-18":"PEPPO의 조건부 등장과 장작 추가","IMG-19":"캠퍼 라인업 6종",
  "IMG-20":"첫 방문 5분 스토리보드","IMG-21":"바람이 불을 키운다","IMG-22":"별이 현실로 내려오다",
  "IMG-23":"하나의 불에서 캠프 전체로","IMG-24":"별자리 하늘","IMG-25":"채널 브릿지 맵","REF-01":"참고 사례 실제 화면 (2026.11.02 캡처)",
 }
@@ -49,7 +50,7 @@ rows = [
  ("공식 채널 소개 → 직접 체험하는 접점","URL 하나 · 로그인 0 · 설치 0, 10초 안에 불 앞"),
  ("내 흔적이 PEPPO 세계와 현실을 바꾼다","장작 → 불티 → 별. 별 마일스톤이 현실 보상으로"),
  ("컨텐츠 방향성 — 해소 · 공감 · 의외성 · 사건","4축 유지. 해소·공감 먼저, 의외성·사건은 숲길과 시간 이벤트로"),
- ("Real World → PEPPO Filter → PEPPO World","야근 책상이 통나무 자리로, 모니터 불빛이 모닥불로"),
+ ("Real World → PEPPO Filter → PEPPO World","하루의 스트레스가 종이 장작으로, 태운 흔적이 별자리로"),
  ("비로그인 시작, 저장 순간 로그인 가치","유지. 저장할 가치 = 내 별자리 · 캠퍼 · 캠프 네임"),
  ("공간 구조 · 이스터에그 · PEPPO 반응 · 허브 복귀","캠프파이어 = 허브, 모든 오솔길은 불로 돌아온다"),
  ("주요 Interaction &amp; Content","텍스트 0, 행동 4: 장작 넣기 · 바람 보내기 · 불 돋우기 · 라면 끓이기"),
@@ -102,7 +103,7 @@ add("statement", img="IMG-07", eyebrow="3막 · Answer · 컨셉", title="밤의
 add("wide", imgh=470, eyebrow="3막 · Answer · 핵심 컨셉과의 정합", title="Real World → PEPPO Filter → PEPPO World, 그대로 통한다", img="IMG-08", body=f"""
 <div class="cards3 tight grow">
  {card("REAL WORLD","익숙한 공간의 단서","야근 책상, 퇴근길 편의점 앞, 비 오는 정류장 — 스트레스가 쌓이는 현실의 장소.")}
- {card("PEPPO FILTER","로우폴리 · 밤 · 불","종이 더미는 장작으로, 모니터 불빛은 모닥불로, 사무실 천장은 밤하늘로. 거친 텍스처와 비현실적 크기의 불.",hi=True)}
+ {card("PEPPO FILTER","로우폴리 · 밤 · 불","하루의 스트레스는 종이 장작으로, 태운 흔적은 별자리로. 플레이어 눈높이의 야식 동네에서 함께 해소한다.",hi=True)}
  {card("PEPPO WORLD","정체된 것을 해소하는 경험","같은 불 앞에 100명. 말은 없고 행동만 보인다. PEPPO는 화면 앞에서 불을 지키는 동행.")}
 </div>""")
 
@@ -144,14 +145,14 @@ add("split", eyebrow="5막 · 공간 04 · 숲길 탐색 노드", title="로드�
 {blk("의외성 · 이스터에그","길가에 비현실적으로 큰 머그컵, 뒤집힌 의자, 나무 둥치의 작은 문. 도달하면 PEPPO가 반응하고 도감에 기록된다.")}
 {blk("허브 복귀","어느 길에서도 멀리 불빛이 보인다. 탐색이 끝나면 불로 돌아온다 — 길을 잃지 않는 월드.",hi=True)}""")
 
-add("split", eyebrow="5막 · 행동", title="텍스트 0, 행동 4로 끝나는 밤", img="IMG-14", rev=True, body="""
-<div class="btns">
+add("wide", imgh=450, eyebrow="5막 · 행동", title="공간에서 함께 하는 네 가지 행동", img="IMG-14", body="""
+<div class="btns" style="flex-direction:row"><!-- 환경 상호작용 -->
  <div><b>장작 넣기</b><span>스트레스 하나를 접어 불에. 누적 → 내 별자리</span></div>
  <div><b>바람 보내기</b><span>옆 사람의 불을 키워 주는 말 없는 응원</span></div>
  <div><b>불 돋우기</b><span>부지깽이로 불을 쑤시면 불꽃이 튀고 소리가 난다</span></div>
  <div><b>라면 끓이기</b><span>가만히 있어도 젓가락이 면을 휘젓는 idle, 브랜드 플레이</span></div>
 </div>
-<p class="note">모든 행동은 토스트 한 줄로만 전달된다 — “4단계 밤바람 님이 장작을 넣었어요”.</p>""")
+<p class="note">왼쪽 위: 장작 넣기 · 오른쪽 위: 바람 보내기 · 왼쪽 아래: 불 돋우기 · 오른쪽 아래: 라면 끓이기. 4명 이상 같은 행동을 하면 PEPPO가 참여하는 연출을 제안한다. (인원 조건은 가안)</p>""")
 
 add("split", eyebrow="5막 · 핵심 메커니즘", title="태운 것은 별이 된다", img="IMG-15", body=f"""
 {blk("개인","장작 하나 = 불티 하나 = 별 하나. 내가 태운 별들이 이어져 <b>내 별자리</b>가 된다. 저장하려면 로그인.",hi=True)}
@@ -173,12 +174,12 @@ add("split", eyebrow="5막 · 불멍 모드 · 사운드", title="머무는 이�
 
 add("split", eyebrow="5막 · PEPPO의 역할", title="PEPPO는 아바타가 아니라 불 지킴이다", img="IMG-18", body=f"""
 {blk("시점 원칙","사용자 눈높이 카메라, PEPPO는 화면 앞쪽의 동행. 사용자가 PEPPO를 ‘조작’하지 않고 PEPPO와 ‘함께’ 있는다.")}
-{blk("행동 양식(가안)","장작을 넣으면 부채질로 거든다 · 별이 뜨면 올려다본다 · 자리가 차면 다음 캠프사이트로 이끈다 · 밤 10시엔 큰 장작을 꺼낸다.",hi=True)}
+{blk("행동 양식(가안)","불멍 참여자 10명 이상이면 등장해 장작을 더한다. 4명 이상이 동시에 장작 넣기·바람 보내기·불 돋우기·라면 행동을 하면 곁에서 같은 모션으로 참여한다. 인원·동시 판정 시간·등장 쿨다운은 운영 검증 후 확정할 가안.",hi=True)}
 {blk("IP 보호","사용자 아바타는 ‘캠퍼’. PEPPO 본체의 꾸미기 · 변형은 열지 않는다. PEPPO Word는 불 앞에서 한 줄씩 건네는 말로.")}""")
 
 add("split", eyebrow="5막 · 캠퍼 아바타", title="입장 10초 만에 생기는 ‘내 캠퍼’가 공유를 만든다", img="IMG-19", rev=True, body=f"""
 {blk("캠프 네임","입장 즉시 랜덤 이름 — 매움 단계 × 밤의 자연물. “4단계 밤바람”, “은근히 매운 호수”, “까르보 새벽안개”.")}
-{blk("꾸미기","같은 몸, 다른 소품: 비니 · 담요 망토 · 헤드랜턴 · 귀마개 · 뿔 후드. 장작 누적과 시즌 이벤트로 해금.")}
+{blk("꾸미기","플레이어는 크림색 몸과 꼬불 불씨 머리의 친구. 불씨 곡선·가슴 띠 색으로 구별하며 계절 의상에 의존하지 않는다. 일반 플레이 시점은 항상 내 눈높이의 1인칭.")}
 {blk("공유 카드","“오늘 2,431명과 함께 태웠어요” + 내 캠퍼 + 내 별자리. 캡처 하나로 스레드 · 인스타에. 1인칭에선 불가능했던 ‘내가 보이는’ 확산.",hi=True)}""")
 
 add("sharecard", eyebrow="5막 · 공유 카드 · 예시와 근거", title="‘내가 보이는’ 한 장 — 공유 카드는 이렇게 생겼다")
@@ -290,6 +291,13 @@ add("text", eyebrow="7막 · Roadmap · 리스크 · 결정 · 다음 2주", tit
 add("statement", img="IMG-24", eyebrow="마무리", title="태운 것은<br>별이 된다",
     sub="관계는 ‘함께 한 것’에서 생긴다. 불닭의 ‘태우다’를 ‘함께’로 넓히면,<br>캐릭터를 아는 경험은 캐릭터와 관계를 맺는 경험이 된다.", tags=["Needs 13개 전부 응답","복제 불가한 3원칙","측정 가능한 10개 지표"])
 
+
+# 개인 버튼 모션은 공간 행동과 구분하며, 설명 시트만 전신 관찰 시점을 사용한다.
+_personal_index = next(i for i, s in enumerate(slides) if s.get("img") == "IMG-14") + 1
+slides.insert(_personal_index, dict(kind="personal", eyebrow="5막 · 개인 인터랙션 · 버튼 하나의 브랜드 경험", title="내 배 주머니에서 시작하는 네 가지 모션"))
+SCRIPTS = {(k + 1 if k > _personal_index else k): v for k, v in SCRIPTS.items()}
+SCRIPTS[_personal_index + 1] = ("공간 행동 → 개인 모션", "공간을 바꾸는 장작·바람·불 돋우기·라면과, 어디서든 버튼으로 표현하는 개인 모션을 구분합니다. 불닭 뿌시기는 배 주머니에서 봉지를 꺼내 두 번 뿌신 뒤 넣습니다. 매운 숨은 한 입 뒤 짧게 후 불고, 스트레스 꼬깃은 종이를 두 번 접어 불로 보내며, 충전 댄스는 주머니 두 번 톡톡과 좌우 리듬, 손하트입니다. 일반 플레이는 내 눈높이 1인칭이며 이 장의 전신 이미지는 다른 사람에게 보이는 동작 설명입니다. 4명 이상 같은 모션을 하면 PEPPO가 따라 하는 연출을 제안하며 동시 판정과 쿨다운은 검증 후 확정합니다.")
+
 # =========================== RENDER ===========================
 def footer(n): return f'<p class="foot">PEPPO WORLD / RENEWAL PROPOSAL · {n:02d}</p>'
 def storybar(act):
@@ -336,6 +344,16 @@ def render(s, n):
         return f"""<section class="slide statement">{img(s['img'],'bg')}<div class="scrim2"></div>
 <p class="eyebrow abs">{s['eyebrow']}</p><div class="sttxt"><h1>{s['title']}</h1><p class="sub">{s['sub']}</p><div class="tags">{tags}</div></div>{footer(n)}</section>"""
     head = f"<header><p class='eyebrow'>{s['eyebrow']}</p><h2>{s['title']}</h2></header>"
+    if k == "personal":
+        return f"""<section class="slide personal">{head}<div style="display:flex;gap:36px;align-items:center;flex:1;min-height:0">
+<div style="width:1010px;flex-shrink:0">{img('MOTION-01','',570)}<p class="note">일반 플레이: 내 눈높이 1인칭 / 이 장: 타인에게 보이는 전신 모션 설명 시트</p></div>
+<div class="txt" style="gap:16px">
+{blk('01 · 불닭 뿌시기 · 약 4초(가안)','배 주머니에서 봉지 꺼내기 → 양손으로 두 차례 뿌시기 → 주머니에 넣기. 바삭한 소리와 손동작이 브랜드 기억으로.')}
+{blk('02 · 매운 숨 후— · 약 3초(가안)','한 입 → 볼이 붉어짐 → 짧게 후— → 꼬불 머리가 솟았다 복귀. 공격 효과 없이 작은 열기만 표현.')}
+{blk('03 · 스트레스 꼬깃 · 약 4초(가안)','빈 종이 꺼내기 → 두 번 꾹 접기 → 불 앞에서 보내기 → 불씨가 별로. 불 밖에서는 손에 보관, 원문 비저장.')}
+{blk('04 · 꼬불 충전 댄스 · 약 5초(가안)','배 주머니 두 번 톡톡 → 좌우 두 박자 → 손하트. 4명 이상 같은 모션이면 PEPPO가 합류(가안).',True)}
+<p class="note">이동 시 취소 · 연타 중첩 방지 · PEPPO는 플레이어가 아닌 동행 NPC · 모션 동기화 판정/등장 쿨다운은 운영 검증 후 확정</p>
+</div></div>{footer(n)}</section>"""
     if k == "identity":
         return f"""<section class="slide identity">{head}
 <div class="idrow">

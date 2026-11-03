@@ -1,1 +1,1 @@
-Active: ember crew / snack neighborhood / approved realtime game look.
+Current: first-person player views + PEPPO NPC + motion sheets.
