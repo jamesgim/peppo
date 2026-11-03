@@ -6,7 +6,8 @@ from scripts import SCRIPTS
 NAVY, PAPER, FIRE, AMBER, LIME, MUTE, CARD = "#0E1220", "#F3EFE6", "#FF6A2A", "#FFB020", "#D6FF3B", "#9A9AA8", "#171B2C"
 
 IMG_DESC = {
- "MOTION-01":"개인 버튼 인터랙션 4종 — 불닭 뿌시기 · 매운 숨 · 스트레스 꼬깃 · 충전 댄스",
+ "SHARE-01":"공유 카드 9:16 · 1:1 시안과 공유 후 친구 입장",
+ "MOTION-01":"개인 의식 4종 — 열기 내쉬기 · 오늘을 뿌시기 · 마음 접어 태우기 · 온기 건네기",
  "IMG-01":"표지 — 밤의 캠프, 불 앞의 월드","IMG-02":"세 개의 불","IMG-03":"유리창 너머의 캐릭터",
  "IMG-04":"수백 개의 작은 가상 휴식 공간","IMG-05":"다섯 가지 이유 — 오브제 5종","IMG-06":"(미사용)",
  "IMG-07":"큰 불 앞 실루엣","IMG-08":"Real World → PEPPO Filter → PEPPO World","IMG-09":"플레이어 눈높이에서 보는 동네 동선",
@@ -14,7 +15,7 @@ IMG_DESC = {
  "IMG-13":"숲길 탐색 노드 — 이스터에그","IMG-14":"네 가지 손동작 4분할","IMG-15":"태운 것은 별이 된다",
  "IMG-16":"불멍 모드 1인칭","IMG-17":"하루의 네 장면","IMG-18":"PEPPO의 조건부 등장과 장작 추가","IMG-19":"캠퍼 라인업 6종",
  "IMG-20":"첫 방문 5분 스토리보드","IMG-21":"바람이 불을 키운다","IMG-22":"별이 현실로 내려오다",
- "IMG-23":"하나의 불에서 캠프 전체로","IMG-24":"별자리 하늘","IMG-25":"채널 브릿지 맵","REF-01":"참고 사례 실제 화면 (2026.11.02 캡처)",
+ "IMG-23":"하나의 불에서 캠프 전체로","IMG-24":"별자리 하늘","IMG-25":"채널 브릿지 맵","REF-01":"참고 사례 실제 화면 ()",
 }
 ACTS = [("Needs","리뉴얼이 가져야 할 것"),("Signal","지금 사람들은 어디에 모이는가"),("Answer","불닭의 ‘태우다’를 ‘함께’로"),
         ("Principles","끝까지 지킬 세 가지"),("Elements","하나의 캠프, 네 개의 자리, 네 개의 행동"),("Impact","브릿지, 플라이휠, 지표"),("Roadmap","불 하나로 시작해 캠프 전체로")]
@@ -43,7 +44,7 @@ add("text", eyebrow="1막 · Needs", title="리뉴얼이 가져야 할 세 가�
  {card("NEEDS 02","내 흔적이 PEPPO의 세계를 바꾸고<br>현실에도 영향을 미친다","참여의 누적이 월드의 변화와 IP의 성장으로 이어지고, 그것이 다시 다음 방문의 이유가 된다.",hi=True)}
  {card("NEEDS 03","브랜드 브릿징 · 단계별 확장 ·<br>기대효과와 KPI","BULDAK ↔ PEPPO ↔ USER 를 잇는 구조, 작게 시작해 넓히는 확장안, 그리고 검증 가능한 지표.")}
 </div>
-<div class="keep"><b>유지하는 원칙</b> 비로그인 시작·저장 시 로그인 · 눈높이 카메라와 PEPPO 동행 · 공간마다 PEPPO의 반응, 탐색 후 허브 복귀 · 익명 표현과 운영 규정 · 소각 원문 비저장</div>""")
+<div class="keep"><b>유지하는 원칙</b> 비로그인 입장·저장 시 로그인 / 1인칭·PEPPO 동행 / 탐색 후 불로 복귀 / 익명 운영·소각 원문 비저장</div>""")
 
 rows = [
  ("캐릭터를 아는 경험 → 관계를 맺는 경험","관계의 첫 단계 = 같은 불 앞에 함께 앉기"),
@@ -67,7 +68,7 @@ add("text", eyebrow="1막 · Needs → Response", title="열세 가지 Needs, �
 # =========================== 2막 Signal ===========================
 add("divider", act=2, img="IMG-04", line="2026년 가을, 사람들은 ‘말없이 함께 있는 가상 공간’으로 몰렸다.")
 
-add("split", eyebrow="2막 · Signal · 시장 신호", title="로그인도 채팅도 없는 공간에 사흘 만에 60만 명", img="REF-01", cap="참고 사례 실제 화면 · 2026.11.02 캡처 — 방 정원 100명, 행동 버튼 4개, 채팅 없음", body="""
+add("split", eyebrow="2막 · Signal · 시장 신호", title="로그인도 채팅도 없는 공간에 사흘 만에 60만 명", img="REF-01", cap="참고 사례 실제 화면 · 방 정원 100명, 행동 버튼 4개, 채팅 없음", body="""
 <div class="nums">
  <div><b>60만</b><span>개인이 만든 가상 휴식 공간 1곳의 공개 사흘 방문 (제작자 집계)</span></div>
  <div><b>100<i>×</i>100</b><span>방 100개 × 정원 100명 — 피크에 만석, 입장 대기 발생</span></div>
@@ -100,11 +101,10 @@ add("statement", img="IMG-07", eyebrow="3막 · Answer · 컨셉", title="밤의
     sub="혼자 온 사람들이 같은 불 앞에 앉는다. 각자의 스트레스를 장작으로 접어 넣는다.<br>불은 모일수록 커지고, 태운 것은 별이 되어 하늘에 남는다. 별이 모이면, 현실이 바뀐다.",
     tags=["장작 넣기","바람 보내기","불멍 모드","태운 것은 별이 된다","밤 10시 불 피우기"])
 
-add("wide", imgh=470, eyebrow="3막 · Answer · 핵심 컨셉과의 정합", title="Real World → PEPPO Filter → PEPPO World, 그대로 통한다", img="IMG-08", body=f"""
-<div class="cards3 tight grow">
- {card("REAL WORLD","익숙한 공간의 단서","야근 책상, 퇴근길 편의점 앞, 비 오는 정류장 — 스트레스가 쌓이는 현실의 장소.")}
- {card("PEPPO FILTER","로우폴리 · 밤 · 불","하루의 스트레스는 종이 장작으로, 태운 흔적은 별자리로. 플레이어 눈높이의 야식 동네에서 함께 해소한다.",hi=True)}
- {card("PEPPO WORLD","정체된 것을 해소하는 경험","같은 불 앞에 100명. 말은 없고 행동만 보인다. PEPPO는 화면 앞에서 불을 지키는 동행.")}
+add("wide", imgh=500, eyebrow="3막 · Answer · 핵심 컨셉과의 정합", title="Real World → PEPPO Filter → PEPPO World, 그대로 통한다", img="IMG-08", body=f"""
+<div class="cards2 grow">
+{card('REAL WORLD','마음에 쌓인 하루','종이를 꺼내 접는 익숙한 행동이 월드의 입구가 된다.')}
+{card('PEPPO FILTER → WORLD','함께 태우고, 별로 남긴다','불 앞에 놓는 순간 개인의 해소가 공동의 흔적으로 이어진다.',hi=True)}
 </div>""")
 
 # =========================== 4막 Principles ===========================
@@ -146,13 +146,12 @@ add("split", eyebrow="5막 · 공간 04 · 숲길 탐색 노드", title="로드�
 {blk("허브 복귀","어느 길에서도 멀리 불빛이 보인다. 탐색이 끝나면 불로 돌아온다 — 길을 잃지 않는 월드.",hi=True)}""")
 
 add("wide", imgh=450, eyebrow="5막 · 행동", title="공간에서 함께 하는 네 가지 행동", img="IMG-14", body="""
-<div class="btns" style="flex-direction:row"><!-- 환경 상호작용 -->
- <div><b>장작 넣기</b><span>스트레스 하나를 접어 불에. 누적 → 내 별자리</span></div>
- <div><b>바람 보내기</b><span>옆 사람의 불을 키워 주는 말 없는 응원</span></div>
- <div><b>불 돋우기</b><span>부지깽이로 불을 쑤시면 불꽃이 튀고 소리가 난다</span></div>
- <div><b>라면 끓이기</b><span>가만히 있어도 젓가락이 면을 휘젓는 idle, 브랜드 플레이</span></div>
-</div>
-<p class="note">왼쪽 위: 장작 넣기 · 오른쪽 위: 바람 보내기 · 왼쪽 아래: 불 돋우기 · 오른쪽 아래: 라면 끓이기. 4명 이상 같은 행동을 하면 PEPPO가 참여하는 연출을 제안한다. (인원 조건은 가안)</p>""")
+<div class="actionlines">
+<p><b>장작 넣기</b> 스트레스를 접어 불에 놓는다 — 태운 흔적은 내 별자리로.</p>
+<p><b>바람 보내기</b> 부채질로 함께 불을 키운다 — 말 없는 응원.</p>
+<p><b>불 돋우기</b> 부지깽이로 불을 돌본다 — 불꽃과 소리로 반응.</p>
+<p><b>라면 끓이기</b> 코펠을 함께 저으며 머문다 — 불닭의 맛과 소리.</p>
+</div>""")
 
 add("split", eyebrow="5막 · 핵심 메커니즘", title="태운 것은 별이 된다", img="IMG-15", body=f"""
 {blk("개인","장작 하나 = 불티 하나 = 별 하나. 내가 태운 별들이 이어져 <b>내 별자리</b>가 된다. 저장하려면 로그인.",hi=True)}
@@ -182,7 +181,7 @@ add("split", eyebrow="5막 · 캠퍼 아바타", title="입장 10초 만에 생�
 {blk("꾸미기","플레이어는 크림색 몸과 꼬불 불씨 머리의 친구. 불씨 곡선·가슴 띠 색으로 구별하며 계절 의상에 의존하지 않는다. 일반 플레이 시점은 항상 내 눈높이의 1인칭.")}
 {blk("공유 카드","“오늘 2,431명과 함께 태웠어요” + 내 캠퍼 + 내 별자리. 캡처 하나로 스레드 · 인스타에. 1인칭에선 불가능했던 ‘내가 보이는’ 확산.",hi=True)}""")
 
-add("sharecard", eyebrow="5막 · 공유 카드 · 예시와 근거", title="‘내가 보이는’ 한 장 — 공유 카드는 이렇게 생겼다")
+add("sharecard", eyebrow="5막 · 공유 카드 · 내 흔적에서 다음 방문으로", title="‘내가 보이는’ 한 장 — 공유 카드는 이렇게 생겼다")
 
 add("wide", imgh=440, eyebrow="5막 · 첫 방문 5분", title="허들 없이 불 앞까지, 저장할 때 로그인", img="IMG-20", body="""
 <div class="steps grow">
@@ -234,7 +233,7 @@ add("text", eyebrow="6막 · Impact · KPI 대시보드", title="세 층위 열 
   </div></div>
  <div class="tier"><div class="tname"><b>핵심</b><span>관계 지표 · 주간</span></div>
   <div class="tiles">
-   <div class="tile hi"><b>D7 재방문</b><span>첫 방문 후 7일 내 재방문 고유 사용자 비율</span><i>디바이스 ID 기준 · 비로그인 포함</i></div>
+   <div class="tile hi"><b>D7 재방문</b><span>첫 방문 코호트의 7일째 재방문 비율</span><i>디바이스 ID 기준 · 비로그인 포함</i></div>
    <div class="tile hi"><b>로그인 전환</b><span>별자리 저장 시점의 Guest → Login 전환율</span><i>저장 시점</i></div>
    <div class="tile hi"><b>공유 카드</b><span>생성 수 · 공유 경유 유입 비율</span><i>UTM</i></div>
   </div></div>
@@ -252,7 +251,7 @@ add("text", eyebrow="6막 · Impact · 측정 설계", title="열 개 지표는 
  <tr><th style='width:200px'>지표</th><th style='width:470px'>측정 방법</th><th style='width:420px'>식별 기준</th><th>한계와 보정</th></tr>
  <tr><td class='b'>CCU 피크 · 자리 점유율</td><td>서버 세션 카운트, 캠프사이트별 1분 단위</td><td>세션 (로그인 불필요)</td><td>탭 중복 → 동일 디바이스 ID 병합</td></tr>
  <tr><td class='b'>장작/인 · 불멍 체류</td><td>행동 이벤트 로그 (장작·바람·돋우기·라면), 불멍 모드 진입/이탈 타임스탬프</td><td>디바이스 ID + 세션</td><td>백그라운드 탭은 visibility 이벤트로 제외</td></tr>
- <tr><td class='b hi'>D7 재방문</td><td>첫 방문 시 <b>1st-party 쿠키 + localStorage에 디바이스 ID 발급(동의 배너)</b>. 7일 내 같은 ID 재접속이면 재방문. 로그인 시 계정에 ID 병합</td><td class='hi'>디바이스 ID 기준 — <b>로그인 없이도 측정</b></td><td>Safari ITP는 스크립트 쿠키를 7일 뒤 삭제 → 서버가 세팅하는 쿠키로 회피, 7일 지표라 영향 최소. 캐시 삭제·기기 변경은 과소 집계(보수적)</td></tr>
+ <tr><td class='b hi'>D7 재방문</td><td>첫 방문 시 <b>1st-party 쿠키 + localStorage에 디바이스 ID 발급(동의 배너)</b>. 7일째 같은 ID 재접속이면 D7 재방문. 로그인 시 계정에 ID 병합</td><td class='hi'>디바이스 ID 기준 — <b>로그인 없이도 측정</b></td><td>브라우저 저장소 정책·동의 거부·기기 변경에 따른 누락을 별도 보고. 계정 병합과 보관 기간은 개인정보 검토 후 확정</td></tr>
  <tr><td class='b'>로그인 전환</td><td>별자리 저장 버튼 노출 → 로그인 완료 퍼널</td><td>디바이스 ID → 계정</td><td>저장 버튼 노출 수를 분모로 (전체 방문 아님)</td></tr>
  <tr><td class='b hi'>공유 카드</td><td>카드 생성 이벤트 수 + 카드에 심은 <b>UTM/딥링크</b>로 공유 경유 유입 수</td><td class='hi'>생성: 디바이스 ID · 유입: UTM</td><td>이미지 저장 후 수동 업로드는 UTM 유실 → 카드에 짧은 입장 코드 인쇄로 보정</td></tr>
  <tr><td class='b'>호감도 변화</td><td>입장 직후 1문항 · 7일 후 재방문 시 1문항 (월드 내 팝업)</td><td>디바이스 ID (동일인 전후 비교)</td><td>응답 편향 → 외부 패널 설문으로 교차 검증(월간)</td></tr>
@@ -294,9 +293,9 @@ add("statement", img="IMG-24", eyebrow="마무리", title="태운 것은<br>별�
 
 # 개인 버튼 모션은 공간 행동과 구분하며, 설명 시트만 전신 관찰 시점을 사용한다.
 _personal_index = next(i for i, s in enumerate(slides) if s.get("img") == "IMG-14") + 1
-slides.insert(_personal_index, dict(kind="personal", eyebrow="5막 · 개인 인터랙션 · 버튼 하나의 브랜드 경험", title="내 배 주머니에서 시작하는 네 가지 모션"))
+slides.insert(_personal_index, dict(kind="personal", eyebrow="5막 · 개인 인터랙션 · 버튼 하나의 브랜드 경험", title="매운 하루의 열기를, 함께 머무는 온기로"))
 SCRIPTS = {(k + 1 if k > _personal_index else k): v for k, v in SCRIPTS.items()}
-SCRIPTS[_personal_index + 1] = ("공간 행동 → 개인 모션", "공간을 바꾸는 장작·바람·불 돋우기·라면과, 어디서든 버튼으로 표현하는 개인 모션을 구분합니다. 불닭 뿌시기는 배 주머니에서 봉지를 꺼내 두 번 뿌신 뒤 넣습니다. 매운 숨은 한 입 뒤 짧게 후 불고, 스트레스 꼬깃은 종이를 두 번 접어 불로 보내며, 충전 댄스는 주머니 두 번 톡톡과 좌우 리듬, 손하트입니다. 일반 플레이는 내 눈높이 1인칭이며 이 장의 전신 이미지는 다른 사람에게 보이는 동작 설명입니다. 4명 이상 같은 모션을 하면 PEPPO가 따라 하는 연출을 제안하며 동시 판정과 쿨다운은 검증 후 확정합니다.")
+SCRIPTS[_personal_index + 1] = ("공간 행동 → 개인 의식", "이 버튼들은 귀여운 동작보다 마음을 다루는 짧은 의식입니다. 열기를 내쉬며 진정하고, 오늘을 뿌시며 해소하고, 마음을 접어 불에 놓고, 남은 온기를 옆 사람에게 건넵니다. 대표 행위는 마음 접어 태우기입니다. 열기 내쉬기는 ㅡㅡ 눈과 붉은 꼬불이로 표현하고 주황색으로 돌아옵니다. 연타 보상 대신 누르고 머물고 놓는 호흡을 둡니다. PEPPO도 옆에서 같은 속도로 함께합니다.")
 
 # =========================== RENDER ===========================
 def footer(n): return f'<p class="foot">PEPPO WORLD / RENEWAL PROPOSAL · {n:02d}</p>'
@@ -346,13 +345,13 @@ def render(s, n):
     head = f"<header><p class='eyebrow'>{s['eyebrow']}</p><h2>{s['title']}</h2></header>"
     if k == "personal":
         return f"""<section class="slide personal">{head}<div style="display:flex;gap:36px;align-items:center;flex:1;min-height:0">
-<div style="width:1010px;flex-shrink:0">{img('MOTION-01','',570)}<p class="note">일반 플레이: 내 눈높이 1인칭 / 이 장: 타인에게 보이는 전신 모션 설명 시트</p></div>
+<div style="width:1010px;flex-shrink:0">{img('MOTION-01','',570)}<p class="note">기본 플레이는 1인칭 / 전신 이미지는 타인에게 보이는 동작 설명 / 대표 행위: 마음 접어 태우기</p></div>
 <div class="txt" style="gap:16px">
-{blk('01 · 불닭 뿌시기 · 약 4초(가안)','배 주머니에서 봉지 꺼내기 → 양손으로 두 차례 뿌시기 → 주머니에 넣기. 바삭한 소리와 손동작이 브랜드 기억으로.')}
-{blk('02 · 매운 숨 후— · 약 3초(가안)','한 입 → 볼이 붉어짐 → 짧게 후— → 꼬불 머리가 솟았다 복귀. 공격 효과 없이 작은 열기만 표현.')}
-{blk('03 · 스트레스 꼬깃 · 약 4초(가안)','빈 종이 꺼내기 → 두 번 꾹 접기 → 불 앞에서 보내기 → 불씨가 별로. 불 밖에서는 손에 보관, 원문 비저장.')}
-{blk('04 · 꼬불 충전 댄스 · 약 5초(가안)','배 주머니 두 번 톡톡 → 좌우 두 박자 → 손하트. 4명 이상 같은 모션이면 PEPPO가 합류(가안).',True)}
-<p class="note">이동 시 취소 · 연타 중첩 방지 · PEPPO는 플레이어가 아닌 동행 NPC · 모션 동기화 판정/등장 쿨다운은 운영 검증 후 확정</p>
+{blk('01 · 열기 내쉬기 — 진정','3초 누르며 후— → 놓기. ㅡㅡ 눈·붉은 꼬불이 → 주황색 복귀. “지금의 긴장을 내려놓는다.”')}
+{blk('02 · 오늘을 뿌시기 — 해소','주머니에서 불닭 봉지 꺼내기 → 두 번 꾹 → 다시 넣기. “힘들었던 일을 작게 만든다.”')}
+{blk('03 · 마음 접어 태우기 — 내려놓기','빈 종이 두 번 접기 → 가슴에 잠깐 품기 → 불에 놓기 → 별 하나. “이 마음을 여기 두고 간다.”',True)}
+{blk('04 · 온기 건네기 — 연결','불 앞에서 온기 담기 → 옆 사람에게 손바닥 펴기 → 함께 머물기. “말없이 네 곁에 있다.”')}
+<p class="note">연타 보상 없음 · 누르기–머무르기–놓기의 호흡 · PEPPO도 같은 속도로 동행. 시간·인원 조건은 가안이며 효과는 검증한다.</p>
 </div></div>{footer(n)}</section>"""
     if k == "identity":
         return f"""<section class="slide identity">{head}
@@ -414,27 +413,33 @@ def render(s, n):
         fig = img(s['img']) if not s.get("cap") else f'<div class="figwrap">{img(s["img"])}<p class="figcap">{s["cap"]}</p></div>'
         return f"""<section class="slide split{rev}">{head}<div class="row">{fig}<div class="txt">{s['body']}</div></div>{footer(n)}</section>"""
     if k == "sharecard":
-        stars = "".join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="#F3EFE6"/>' for x,y,r in [(40,60,3),(90,30,2.5),(130,70,3.5),(180,40,2.5),(220,80,3),(260,35,2.5),(70,120,2),(150,130,2.5),(240,125,2),(110,170,2),(200,165,2.5)])
-        lines = '<path d="M40 60 L90 30 L130 70 L180 40 L220 80 L260 35" fill="none" stroke="#D6FF3B" stroke-width="1.5" opacity=".9"/>'
-        card916 = f"""<div class="sc916"><div class="sctop"><span>PEPPO CAMP</span><span>2026.11.02 · 캠프사이트 7</span></div>
-<svg viewBox="0 0 300 200" width="300" height="200">{stars}{lines}</svg>
-<p class="scbig">오늘 <b>2,431명</b>과<br>함께 태웠어요</p>
-<div class="scme"><div class="scav"></div><div><b>4단계 밤바람</b><span>장작 27 · 바람 보내기 12 · 불멍 18분</span></div></div>
-<div class="scbar"><i style="width:25%"></i></div><p class="scsm">내 별자리 27 / 108 · 별이 되어 하늘에 남았습니다</p>
-<p class="scurl">peppoworld.com · 입장 코드 <b>NB-4K2</b></p></div>"""
-        card11 = f"""<div class="sc11"><p class="scbig">오늘 <b>2,431명</b>과 함께 태웠어요</p><div class="scme"><div class="scav"></div><div><b>4단계 밤바람</b><span>장작 27 · 별자리 27/108</span></div></div><p class="scurl">peppoworld.com · <b>NB-4K2</b></p></div>"""
-        right = f"""<div class="txt">
-{blk("근거 01 · 참고 사례","아바타 꾸미기 캡처가 밈이 되어 릴스 330만 뷰. 공유를 만든 것은 콘텐츠가 아니라 <b>‘내 캐릭터가 찍힌 한 장’</b>이었다.")}
-{blk("근거 02 · 연말 결산형 카드의 관행","음악·학습·결제 서비스의 ‘올해의 나’ 카드는 매년 자발적으로 수백만 장 공유된다. 숫자 하나 + 나 + 서비스명의 공식은 검증돼 있다.")}
-{blk("근거 03 · 월드에서 ‘내가 보이는’ 유일한 지점","1인칭 로드뷰와 말 없는 캠프에서 사용자가 자기 모습을 확인하는 순간은 이 카드뿐이다. 그래서 캡처 버튼 하나로 9:16 · 1:1 두 장을 동시에 만든다.",hi=True)}
-{blk("지표 연결","카드 생성 수 · 카드 속 입장 코드/UTM 경유 유입 — KPI 대시보드의 ‘공유 카드’ 두 숫자가 여기서 나온다.")}
-</div>"""
-        return f"""<section class="slide sharecard">{head}<div class="row"><div class="scwrap">{card916}{card11}</div>{right}</div>{footer(n)}</section>"""
+        return f"""<section class="slide sharecard">{head}
+{img('SHARE-01','wideimg',480)}
+<div class="shareflow"><span>① 내 캐릭터·별자리 카드 생성</span><span>② 이미지 저장 / 기기 공유</span><span>③ SNS에 카드 + 입장 링크</span><span>④ 친구가 링크로 입장</span></div>
+<div class="cards2">
+{blk('왜 공유하는가','내 캐릭터 + 오늘의 흔적 + 함께한 숫자. 개인 기록을 한 장에 담는다. 9:16·1:1 두 형식 제공. 수치와 카드는 예시이며 공유 의향은 MVP에서 확인한다.')}
+{blk('무엇을 측정하는가','카드 생성·공유 버튼 사용·입장 링크 경유 방문을 연결한다. 이미지 저장과 실제 게시를 구분하며, 출처 코드는 개인정보 없이 유입만 집계한다.',True)}
+</div>{footer(n)}</section>"""
     if k == "wide":
         return f"""<section class="slide wide">{head}{img(s['img'],'wideimg',s.get('imgh'))}<div class="txt grow">{s['body']}</div>{footer(n)}</section>"""
     return f"""<section class="slide text">{head}<div class="txt grow">{s['body']}</div>{footer(n)}</section>"""
 
 CSS = f"""
+/* Full artwork on content slides; only cover/divider backgrounds bleed. */
+.slide:not(.cover):not(.divider):not(.statement) figure.img img{{object-fit:contain}}
+.slide:not(.cover):not(.divider):not(.statement) figure.img{{min-height:0}}
+.wide>figure.wideimg,.sharecard>figure.wideimg{{flex-shrink:0}}
+.wide .txt.grow{{min-height:0}}
+.actionlines{{display:grid;gap:7px}}
+.actionlines p{{font-size:22px;line-height:1.35}}
+.actionlines b{{display:inline-block;width:155px;color:{AMBER}}}
+.cards2{{display:grid;grid-template-columns:1fr 1fr;gap:24px}}
+.shareflow{{display:flex;justify-content:space-between;gap:14px}}
+.shareflow span{{font-size:21px;color:{AMBER}}}
+.sharecard .cards2 .blk{{padding:18px 22px}}
+.sharecard .cards2 p{{font-size:21px;line-height:1.4}}
+.keep{{white-space:nowrap;font-size:22px!important;letter-spacing:-.3px}}
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300..900&display=swap');
 *{{box-sizing:border-box;margin:0;padding:0}}
 html,body{{background:#05060B;color:{PAPER};font-family:'Noto Sans KR',Arial,sans-serif;height:100%;overflow:hidden}}
@@ -543,6 +548,11 @@ body.sc #script{{display:block}} .sch{{display:flex;gap:16px;align-items:baselin
 .sc11{{width:300px;height:300px;border-radius:24px;background:linear-gradient(160deg,#141A33,#2A1A12);border:1px solid #3A4060;padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 40px rgba(0,0,0,.45)}} .sc11 .scbig{{font-size:27px}} .sc11 .scav{{width:44px;height:44px}} .sc11 .scme b{{font-size:18px}} .sc11 .scme span{{font-size:14px}}
 #nav{{position:fixed;right:18px;bottom:14px;font:14px/1 Arial;color:#777;letter-spacing:1px;z-index:9}}
 #pdfbtn{{position:fixed;right:18px;top:14px;z-index:9;padding:10px 16px;border-radius:999px;background:rgba(214,255,59,.92);color:#0E1220;font:700 14px/1 'Noto Sans KR',Arial;letter-spacing:1px;border:0;cursor:pointer}}
+.t.br td,.t.br th{{font-size:17px;padding:6px 10px;line-height:1.3}}
+.t.br td.b{{font-size:18px}}
+.wstage{{zoom:.8}}
+.wrow{{min-height:0;max-height:720px}}
+.wside .note{{font-size:18px}}
 @media print{{
  @page{{size:A4 landscape;margin:0}}
  html,body{{height:auto!important;overflow:visible!important;background:{NAVY}}}
